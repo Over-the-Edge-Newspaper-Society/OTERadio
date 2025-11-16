@@ -1,0 +1,33 @@
+{
+  "apiVersion": 2,
+  "name": "ote/radio-player",
+  "title": "OTE Radio Player",
+  "category": "widgets",
+  "icon": "format-audio",
+  "description": "Add the OTE live radio tuner with your stream URL and station info.",
+  "keywords": ["radio", "audio", "stream", "player"],
+  "version": "0.1.0",
+  "textdomain": "ote-radio-player",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "stationName": { "type": "string", "default": "CFUR Radio" },
+    "city": { "type": "string", "default": "Prince George" },
+    "frequency": { "type": "number", "default": 88.7 },
+    "bandKind": { "type": "string", "default": "fm" },
+    "bandMin": { "type": "number", "default": 70 },
+    "bandMax": { "type": "number", "default": 108 },
+    "bandStep": { "type": "number", "default": 0.2 },
+    "bandMajor": { "type": "number", "default": 1 },
+    "bandDecimals": { "type": "number", "default": 1 },
+    "streamUrl": { "type": "string", "default": "https://cfur-radio-proxy.ote-publisher.workers.dev" },
+    "track": { "type": "string", "default": "One More Cup of Coffee" },
+    "artist": { "type": "string", "default": "Bob Dylan" },
+    "defaultLocked": { "type": "boolean", "default": true }
+  },
+  "editorScript": "file:./build/index.js",
+  "viewScript": "file:./build/view.js",
+  "editorStyle": "file:./build/index.css",
+  "style": "file:./build/style-index.css"
+}

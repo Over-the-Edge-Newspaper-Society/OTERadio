@@ -1,0 +1,6 @@
+@import './style.scss';
+
+.wp-block-ote-radio-player.is-selected .ote-radio__card {
+  outline: 2px solid rgba(239, 68, 68, 0.4);
+  outline-offset: 3px;
+}

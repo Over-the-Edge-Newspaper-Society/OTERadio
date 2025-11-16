@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTE Radio Player - Dev Preview</title>
+    <link rel="stylesheet" href="./build/style-index.css">
+    <style>
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .dark-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-size: 14px;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+        .dark-toggle:hover {
+            background: #555;
+        }
+        body.dark-mode .dark-toggle {
+            background: #eee;
+            color: #333;
+        }
+        body.dark-mode .dark-toggle:hover {
+            background: #ddd;
+        }
+        body.dark-mode h1,
+        body.dark-mode h2 {
+            color: #e0e0e0 !important;
+        }
+        body.dark-mode hr {
+            border-top-color: #444 !important;
+        }
+    </style>
+</head>
+<body>
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+    <h1 style="text-align: center; padding: 20px; font-family: sans-serif; color: #333;">OTE Radio Player - Development Preview</h1>
+
+    <!-- Locked Version -->
+    <div style="margin-bottom: 60px;">
+        <h2 style="text-align: center; font-family: sans-serif; color: #666; font-size: 18px;">Locked State</h2>
+        <div id="radio-locked" class="wp-block-ote-radio-player" data-ote-radio='{"stationName":"CFUR Radio","city":"Prince George","frequency":88.7,"bandKind":"fm","bandMin":70,"bandMax":108,"bandStep":0.2,"bandMajor":1,"bandDecimals":1,"streamUrl":"https://cfur-radio-proxy.ote-publisher.workers.dev","track":"One More Cup of Coffee","artist":"Bob Dylan","defaultLocked":true}'></div>
+    </div>
+
+    <hr style="margin: 40px auto; max-width: 800px; border: none; border-top: 1px solid #ddd;">
+
+    <!-- Unlocked Version -->
+    <div style="margin-top: 60px;">
+        <h2 style="text-align: center; font-family: sans-serif; color: #666; font-size: 18px;">Unlocked State</h2>
+        <div id="radio-unlocked" class="wp-block-ote-radio-player" data-ote-radio='{"stationName":"CFUR Radio","city":"Prince George","frequency":88.7,"bandKind":"fm","bandMin":70,"bandMax":108,"bandStep":0.2,"bandMajor":1,"bandDecimals":1,"streamUrl":"https://cfur-radio-proxy.ote-publisher.workers.dev","track":"One More Cup of Coffee","artist":"Bob Dylan","defaultLocked":false}'></div>
+    </div>
+
+    <!-- Load React and ReactDOM from CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Polyfill WordPress wp.element to use the React we just loaded -->
+    <script>
+        window.wp = window.wp || {};
+        window.wp.element = {
+            createRoot: ReactDOM.createRoot,
+            render: ReactDOM.render,
+            Component: React.Component,
+            createElement: React.createElement,
+            Fragment: React.Fragment,
+            useState: React.useState,
+            useEffect: React.useEffect,
+            useRef: React.useRef,
+            useMemo: React.useMemo,
+            useCallback: React.useCallback,
+            // Add other React hooks/methods as needed
+        };
+        console.log('WordPress wp.element polyfill loaded');
+    </script>
+
+    <!-- Load the bundled radio player -->
+    <script src="./build/view.js"></script>
+
+    <script>
+        // Dark mode toggle
+        function toggleDarkMode() {
+            const body = document.body;
+            const button = document.querySelector('.dark-toggle');
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                button.textContent = '☀️ Light Mode';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                button.textContent = '🌙 Dark Mode';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.dark-toggle').textContent = '☀️ Light Mode';
+        }
+
+        console.log('Dev preview loaded');
+        console.log('Radio elements:', document.querySelectorAll('[data-ote-radio]'));
+    </script>
+</body>
+</html>

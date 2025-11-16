@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTE Radio Player - Demo</title>
+    <link rel="stylesheet" href="./build/style-index.css">
+</head>
+<body>
+    <h1 style="text-align: center; padding: 20px; font-family: sans-serif;">OTE Radio Player - Live Demo</h1>
+
+    <!-- Locked Version -->
+    <div id="radio-locked" class="wp-block-ote-radio-player" data-ote-radio='{"stationName":"CFUR Radio","city":"Prince George","frequency":88.7,"bandKind":"fm","bandMin":70,"bandMax":108,"bandStep":0.2,"bandMajor":1,"bandDecimals":1,"streamUrl":"https://listen.cfur.ca/mp3","track":"One More Cup of Coffee","artist":"Bob Dylan","defaultLocked":true}'></div>
+
+    <hr style="margin: 40px 0;">
+
+    <!-- Unlocked Version -->
+    <div id="radio-unlocked" class="wp-block-ote-radio-player" data-ote-radio='{"stationName":"CFUR Radio","city":"Prince George","frequency":88.7,"bandKind":"fm","bandMin":70,"bandMax":108,"bandStep":0.2,"bandMajor":1,"bandDecimals":1,"streamUrl":"https://listen.cfur.ca/mp3","track":"One More Cup of Coffee","artist":"Bob Dylan","defaultLocked":false}'></div>
+
+    <script src="./build/view.js"></script>
+
+    <script>
+        // Debug: Check if the script loaded
+        console.log('Demo page loaded');
+        console.log('Radio elements:', document.querySelectorAll('[data-ote-radio]'));
+    </script>
+</body>
+</html>

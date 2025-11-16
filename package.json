@@ -1,0 +1,19 @@
+{
+  "name": "ote-radio-player",
+  "version": "0.1.0",
+  "description": "Gutenberg block that renders the OTE radio player component.",
+  "author": "OTE",
+  "license": "GPL-2.0-or-later",
+  "private": true,
+  "scripts": {
+    "start": "wp-scripts start src/index.js src/view.js",
+    "build": "wp-scripts build src/index.js src/view.js"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^27.3.0"
+  },
+  "dependencies": {
+    "framer-motion": "^12.23.24",
+    "lucide-react": "^0.553.0"
+  }
+}
